@@ -1,11 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View ,FlatList} from 'react-native';
 
 export default function App() {
+  const letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  const lettersMap = letters.map((value,index) => ({letterText:value,key:index}))
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <FlatList
+      data={lettersMap}
+      renderItem={(letter) => <Text style={styles.text}>{letter.item.letterText}</Text>}
+      />
     </View>
   );
 }
@@ -17,4 +22,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  text: {
+    paddingBottom:20
+  }
 });
